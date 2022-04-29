@@ -771,8 +771,6 @@ public class MainScreenController {
 
                     try{
 
-                        System.out.println("MODE: " + mode);
-
                         List<Message> messages = Graph.getMailListFromFolder(inboxString, messageMap.size()); //from graph
 
                         Map<String, Message> messageIDMap = messages.stream().collect(Collectors.toMap(message -> message.id, message -> message));
@@ -781,8 +779,6 @@ public class MainScreenController {
                         for(String id : differenceIDMap.keySet()){
                             messageIDMap.remove(id);
                         }
-
-                        System.out.println("MESSAGE ID SIZE: " + messageIDMap.size());
 
                         if (messageIDMap.size() > 0){
 
@@ -805,19 +801,12 @@ public class MainScreenController {
 
                                 notificationCount += messageIDMap.size();
 
-                                System.out.println("IN CONCENTRATED MODE, NOTIFICATION THRESHOLD: " + notificationThreshold);
-                                System.out.println("NOTIFICATION COUNT: " + notificationCount);
-
-
                                 if(notificationCount >= notificationThreshold){
                                     sendEmailNotification("Concentrated Mode", "You have " + notificationCount + " new emails in your Inbox", "");
                                     notificationCount = 0;
                                 }
                             }
                             else if(mode == Mode.HOLIDAY){
-                                System.out.println("HOLIDAY MODE");
-                                System.out.println(holiday);
-
                                 for(Message message : messageIDMap.values()){
 
                                     String sender = "";
@@ -827,7 +816,7 @@ public class MainScreenController {
                                     String subject = message.subject;
                                     String bodyPreview = message.bodyPreview;
 
-                                    if(holiday.equals(Holiday.SENDERS)){ //TODO could do with cleaning up - maybe reorder?
+                                    if(holiday.equals(Holiday.SENDERS)){
                                         if(fromSpecifiedSender(message)){
                                             senderHolidayNotification(sender, subject, bodyPreview);
                                         }

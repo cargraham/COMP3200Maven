@@ -1,1 +1,2 @@
-/src/main/resources/oAuth.properties
+/src/main/resources/com/emailclient/emailclientv3/oAuth.properties
+/target/classes/oAuth.properties

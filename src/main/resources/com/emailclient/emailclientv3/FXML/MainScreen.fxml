@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emailclient.emailclientv3.Controller.MainScreenController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="150.0" prefWidth="600.0" stylesheets="@../stylesheet.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Home">
+            <content>
+              <AnchorPane id="tabAnchorPane" minHeight="0.0" minWidth="0.0" prefWidth="700.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" layoutY="1.0" spacing="5.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Button fx:id="newEmailButton" mnemonicParsing="false" onAction="#newEmail" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="New Email" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteMessage" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Delete" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                          <VBox alignment="CENTER" stylesheets="@../stylesheet.css">
+                                             <children>
+                                                <Button fx:id="replyButton" mnemonicParsing="false" onAction="#replyToMessage" prefHeight="15.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Reply" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="replyAllButton" mnemonicParsing="false" onAction="#replyAllToMessage" prefHeight="15.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Reply All" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#forwardMessage" prefHeight="15.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Forward" textAlignment="CENTER" wrapText="true">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="moveMessageButton" mnemonicParsing="false" onAction="#moveMessage" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Move Message" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="editDraftButton" mnemonicParsing="false" onAction="#editDraft" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Edit Draft" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-size: 10px;" text="Email">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="100.0" stylesheets="@../stylesheet.css">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Separator>
+                              <VBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER" spacing="5.0">
+                                       <children>
+                                          <Button fx:id="newFolderButton" mnemonicParsing="false" onAction="#newFolder" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Add New Folder" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="deleteFolderButton" mnemonicParsing="false" onAction="#deleteFolder" prefHeight="90.0" prefWidth="65.0" stylesheets="@../stylesheet.css" text="Delete Folder" textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-size: 10px;" text="Folder">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Settings">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Button fx:id="changeModeButton" mnemonicParsing="false" onAction="#changeMode" prefHeight="90.0" prefWidth="65.0" text="Change Mode" textAlignment="CENTER" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <HBox prefHeight="298.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
+         <children>
+            <SplitPane dividerPositions="0.29797979797979796, 0.5" HBox.hgrow="ALWAYS">
+              <items>
+                  <TreeView id="tree-view" fx:id="foldersList" maxWidth="300.0" minWidth="200.0" onMouseClicked="#handleFoldersListClick" prefWidth="200.0" stylesheets="@../stylesheet.css" />
+                  <ListView fx:id="messageListView" maxWidth="340.0" prefWidth="340.0" />
+                  <VBox id="messageVbox" spacing="5.0">
+                     <children>
+                        <Label fx:id="senderText" />
+                        <Label fx:id="recipientText" />
+                        <Label fx:id="subjectText" />
+                        <BorderPane>
+                           <left>
+                              <Label fx:id="timeStampText" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <Label fx:id="importantText" styleClass="importance" stylesheets="@../stylesheet.css" textFill="#ff3639" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets right="5.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </right>
+                        </BorderPane>
+                        <HBox fx:id="attachmentsHBox" prefWidth="200.0" />
+                        <Separator prefWidth="200.0" />
+                        <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+              </items>
+            </SplitPane>
+         </children>
+      </HBox>
+      <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="11.0" fx:id="x3" />
+               </font>
+               <textFill>
+                  <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+               </textFill>
+            </Label>
+            <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+            <Label font="$x3" maxWidth="-1.0" textFill="$x4" HBox.hgrow="NEVER" />
+         </children>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

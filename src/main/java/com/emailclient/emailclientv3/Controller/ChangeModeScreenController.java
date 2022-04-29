@@ -77,7 +77,7 @@ public class ChangeModeScreenController {
     //launches the change sync frequency stage on button click
     @FXML
     public void showChangeSyncFrequency() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ChangeSyncFrequencyScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ChangeSyncFrequencyScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ChangeSyncFrequencyScreenController changeSyncFrequencyScreenController = fxmlLoader.getController();
@@ -85,7 +85,7 @@ public class ChangeModeScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 300, 200);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("Change Sync Frequency");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -96,7 +96,7 @@ public class ChangeModeScreenController {
     //launches do not disturb settings on button click
     @FXML
     public void disturbSettings() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/DisturbSettingsScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/DisturbSettingsScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         DisturbSettingsScreenController disturbSettingsScreenController = fxmlLoader.getController();
@@ -104,7 +104,7 @@ public class ChangeModeScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("Do Not Disturb Settings");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -115,7 +115,7 @@ public class ChangeModeScreenController {
     //launches concentrated settings on button click
     @FXML
     public void concentratedSettings() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ConcentratedSettingsScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ConcentratedSettingsScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ConcentratedSettingsScreenController concentratedSettingsScreenController = fxmlLoader.getController();
@@ -123,7 +123,7 @@ public class ChangeModeScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 500, 250);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("Concentrated Mode Settings");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -134,7 +134,7 @@ public class ChangeModeScreenController {
     //launches holiday settings on button click
     @FXML
     public void holidaySettings() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/HolidaySettingsScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/HolidaySettingsScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         HolidaySettingsScreenController holidaySettingsScreenController = fxmlLoader.getController();
@@ -142,7 +142,7 @@ public class ChangeModeScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("Holiday Mode Settings");
         stage.initModality(Modality.APPLICATION_MODAL);

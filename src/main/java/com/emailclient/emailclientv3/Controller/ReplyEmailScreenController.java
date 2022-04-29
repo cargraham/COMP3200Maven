@@ -18,10 +18,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class ReplyEmailScreenController {
 
@@ -71,7 +69,11 @@ public class ReplyEmailScreenController {
         this.recipients.add(recipient);
         this.subject = subject;
         this.messageID = messageID;
-        toTextField.setText(recipient.emailAddress.address);
+
+        if(recipient.emailAddress != null){
+            toTextField.setText(recipient.emailAddress.address);
+        }
+
         subjectTextField.setText("RE: "  + this.subject);
     }
 
@@ -90,9 +92,13 @@ public class ReplyEmailScreenController {
 
         for(Recipient recipient : recipients){
 
-            String recipientAddress = recipient.emailAddress.address;
+            String recipientAddress = "";
 
-            if(!recipientAddress.equals(Graph.getUser().userPrincipalName)){
+            if(recipient.emailAddress != null){
+                recipientAddress = recipient.emailAddress.address;
+            }
+
+            if(!Objects.equals(recipientAddress, Graph.getUser().userPrincipalName)){
                 recipientJoiner.add(recipientAddress);
             }
         }

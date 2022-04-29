@@ -15,17 +15,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class EditDraftScreenController {
 
@@ -60,11 +58,7 @@ public class EditDraftScreenController {
     public Button sendButton;
 
     private final String SEMI_COLON = "; ";
-    private ArrayList<Recipient> recipients;
-    private ArrayList<Recipient> ccRecipients;
-    private String subject;
     private String messageID;
-    private String body;
     private Stage thisStage;
     private LinkedList<Attachment> attachments = new LinkedList<>();
 
@@ -76,66 +70,89 @@ public class EditDraftScreenController {
 
     //loads the draft message into the editing window
     public void initialiseDraft(Message message){
-        this.recipients = (ArrayList<Recipient>) message.toRecipients;
-        this.ccRecipients = (ArrayList<Recipient>) message.ccRecipients;
-        this.subject = message.subject;
-        this.messageID = message.id;
-        this.body = message.body.content;
-        toTextField.setText(buildRecipientsString(recipients));
-        ccTextField.setText(buildRecipientsString(ccRecipients));
-        subjectTextField.setText(subject);
+        if(message != null){
+            ArrayList<Recipient> recipients = new ArrayList<>();
+            ArrayList<Recipient> ccRecipients = new ArrayList<>();
 
-        Document document = Jsoup.parse(body);
-        Document.OutputSettings outputSettings = new Document.OutputSettings();
-        outputSettings.prettyPrint(false);
-        document.outputSettings(outputSettings);
-        document.select("br").before("\\n");
-        document.select("p").before("\\n");
+            if(message.toRecipients != null){
+                recipients.addAll(message.toRecipients);
+            }
 
-        String originalNewLines = document.html().replaceAll("\\\\n", "\n");
-        String parsedBody = Jsoup.clean(originalNewLines, "", Whitelist.none(), outputSettings);
+            if(message.ccRecipients != null){
+                ccRecipients.addAll(message.ccRecipients);
+            }
 
-        bodyTextArea.setText(parsedBody);
+            String subject = message.subject;
+            this.messageID = message.id;
 
-        if(message.hasAttachments){
+            String body = "";
 
-            attachments = new LinkedList<>(Graph.getMessageAttachmentList(messageID));
-            attachmentsHBox.setPadding(new Insets(5));
-            attachmentsHBox.setSpacing(5);
+            if(message.body != null){
+                body = message.body.content;
+            }
 
-            for(Attachment attachment : attachments){
+            toTextField.setText(buildRecipientsString(recipients));
+            ccTextField.setText(buildRecipientsString(ccRecipients));
+            subjectTextField.setText(subject);
 
-                Button attachmentButton = new Button(attachment.name);
-                attachmentsHBox.getChildren().add(attachmentButton);
+            Document document = Jsoup.parse(body);
+            Document.OutputSettings outputSettings = new Document.OutputSettings();
+            outputSettings.prettyPrint(false);
+            document.outputSettings(outputSettings);
+            document.select("br").before("\\n");
+            document.select("p").before("\\n");
 
-                if (attachment.oDataType.equals("#microsoft.graph.fileAttachment")){
+            String originalNewLines = document.html().replaceAll("\\\\n", "\n");
+            String parsedBody = Jsoup.clean(originalNewLines, "", Safelist.none(), outputSettings);
 
-                    attachmentButton.setOnAction(event1 -> {
+            bodyTextArea.setText(parsedBody);
 
-                        FileAttachment attachment1 = Graph.getMessageFileAttachment(messageID, attachment.id);
-                        String home = System.getProperty("user.home");
-                        File file = new File(home + File.separator + "Downloads" + File.separator + attachment1.name);
+            if(message.hasAttachments != null && message.hasAttachments){
 
-                        try(FileOutputStream outputStream = new FileOutputStream(file)){
-                            file.createNewFile();
-                            outputStream.write(attachment1.contentBytes);
-                            if(Desktop.isDesktopSupported()){
-                                Desktop desktop = Desktop.getDesktop();
-                                if(file.exists()){
-                                    desktop.open(file);
+                attachments = new LinkedList<>(Graph.getMessageAttachmentList(messageID));
+                attachmentsHBox.setPadding(new Insets(5));
+                attachmentsHBox.setSpacing(5);
+
+                for(Attachment attachment : attachments){
+
+                    Button attachmentButton = new Button(attachment.name);
+                    attachmentsHBox.getChildren().add(attachmentButton);
+
+                    if (Objects.equals(attachment.oDataType, "#microsoft.graph.fileAttachment")){
+
+                        attachmentButton.setOnAction(event1 -> {
+
+                            FileAttachment attachment1 = Graph.getMessageFileAttachment(messageID, attachment.id);
+                            String home = System.getProperty("user.home");
+                            File file = new File(home + File.separator + "Downloads" + File.separator + attachment1.name);
+
+                            try(FileOutputStream outputStream = new FileOutputStream(file)){
+                                if(file.createNewFile()){
+
+                                    if(attachment1.contentBytes != null){
+                                        outputStream.write(attachment1.contentBytes);
+                                    }
+
+                                    if(Desktop.isDesktopSupported()){
+                                        Desktop desktop = Desktop.getDesktop();
+                                        if(file.exists()){
+                                            desktop.open(file);
+                                        }
+                                    }
                                 }
-                            }
 
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
                 }
             }
-        }
 
-        if(message.importance == Importance.HIGH){
-            importantToggle.setSelected(true);
+            if(message.importance == Importance.HIGH){
+                importantToggle.setSelected(true);
+            }
         }
     }
 
@@ -145,9 +162,13 @@ public class EditDraftScreenController {
 
         for(Recipient recipient : recipients){
 
-            String recipientAddress = recipient.emailAddress.address;
+            String recipientAddress = "";
 
-            if(!recipientAddress.equals(Graph.getUser().userPrincipalName)){
+            if(recipient.emailAddress != null){
+                recipientAddress = recipient.emailAddress.address;
+            }
+
+            if(!Objects.equals(recipientAddress, Graph.getUser().userPrincipalName)){
                 recipientJoiner.add(recipientAddress);
             }
         }

@@ -555,7 +555,7 @@ public class MainScreenController {
     //launches new email screen when 'New Email' button clicked
     @FXML
     public void newEmail() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/NewEmailScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/NewEmailScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -563,7 +563,7 @@ public class MainScreenController {
         newEmailScreenController.setStage(stage);
 
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("New Email");
         stage.setScene(scene);
         stage.show();
@@ -586,7 +586,7 @@ public class MainScreenController {
     //launches the reply screen when 'Reply' button is clicked
     @FXML
     public void replyToMessage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ReplyEmailScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ReplyEmailScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ReplyEmailScreenController replyEmailScreenController = fxmlLoader.getController();
@@ -600,7 +600,7 @@ public class MainScreenController {
         replyEmailScreenController.setStage(stage);
 
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Reply to Email");
         stage.setScene(scene);
         stage.show();
@@ -609,7 +609,7 @@ public class MainScreenController {
     //launches reply all screen when 'Reply All' button is clicked
     @FXML
     public void replyAllToMessage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ReplyEmailScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ReplyEmailScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ReplyEmailScreenController replyEmailScreenController = fxmlLoader.getController();
@@ -629,7 +629,7 @@ public class MainScreenController {
         replyEmailScreenController.setStage(stage);
 
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Reply All to Email");
         stage.setScene(scene);
         stage.show();
@@ -638,7 +638,7 @@ public class MainScreenController {
     //launches forward screen when 'Forward' button is clicked
     @FXML
     public void forwardMessage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ForwardEmailScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ForwardEmailScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ForwardEmailScreenController forwardEmailScreenController = fxmlLoader.getController();
@@ -649,7 +649,7 @@ public class MainScreenController {
         forwardEmailScreenController.setStage(stage);
 
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Forward Email");
         stage.setScene(scene);
         stage.show();
@@ -658,7 +658,7 @@ public class MainScreenController {
     //launches edit draft screen when 'Edit Draft' button is clicked
     @FXML
     public void editDraft() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/EditDraftScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/EditDraftScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         EditDraftScreenController editDraftScreenController = fxmlLoader.getController();
@@ -667,7 +667,7 @@ public class MainScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 600, 400);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Edit Draft");
         stage.setScene(scene);
         stage.show();
@@ -676,7 +676,7 @@ public class MainScreenController {
     //launches new folder screen when 'Add New Folder' button is clicked
     @FXML
     public void newFolder() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/NewFolderScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/NewFolderScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         NewFolderScreenController newFolderScreenController = fxmlLoader.getController();
@@ -684,7 +684,7 @@ public class MainScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 300, 200);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("New Folder");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
@@ -695,7 +695,7 @@ public class MainScreenController {
     //launches delete folder screen when 'Delete Folder' button is clicked
     @FXML
     public void deleteFolder() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/DeleteFolderScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/DeleteFolderScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         DeleteFolderScreenController deleteFolderScreenController = fxmlLoader.getController();
@@ -708,7 +708,7 @@ public class MainScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 300, 200);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Delete Folder");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
@@ -719,7 +719,7 @@ public class MainScreenController {
     //launches move message screen when 'Move Message' button is clicked
     @FXML
     public void moveMessage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/MoveMessageScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/MoveMessageScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         MoveMessageScreenController moveMessageScreenController = fxmlLoader.getController();
@@ -728,7 +728,7 @@ public class MainScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 300, 200);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setTitle("Move Message");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
@@ -739,7 +739,7 @@ public class MainScreenController {
     //launches change mode screen when 'Change Mode' button is clicked
     @FXML
     public void changeMode() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/ChangeModeScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/emailclient/emailclientv3/FXML/ChangeModeScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         ChangeModeScreenController changeModeScreenController = fxmlLoader.getController();
@@ -747,7 +747,7 @@ public class MainScreenController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 600, 420);
-        scene.getStylesheets().add("/stylesheet.css");
+        scene.getStylesheets().add(getClass().getResource("/com/emailclient/emailclientv3/stylesheet.css").toExternalForm());
         stage.setResizable(false);
         stage.setTitle("Change Mode");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -773,124 +773,122 @@ public class MainScreenController {
 
                         System.out.println("MODE: " + mode);
 
-                        //if(mode != Mode.DISTURB || (mode == Mode.DISTURB && disturb == Disturb.OFF)){
-                            List<Message> messages = Graph.getMailListFromFolder(inboxString, messageMap.size()); //from graph
-                            //List<Message> difference = new ArrayList<>(messageMap.values()); //from app - doesn't work if inbox isn't selected
+                        List<Message> messages = Graph.getMailListFromFolder(inboxString, messageMap.size()); //from graph
 
-                            Map<String, Message> messageIDMap = messages.stream().collect(Collectors.toMap(message -> message.id, message -> message));
-                            Map<String, Message> differenceIDMap = inboxMessageList.stream().collect(Collectors.toMap(message -> message.id, message -> message));
+                        Map<String, Message> messageIDMap = messages.stream().collect(Collectors.toMap(message -> message.id, message -> message));
+                        Map<String, Message> differenceIDMap = inboxMessageList.stream().collect(Collectors.toMap(message -> message.id, message -> message));
 
-                            for(String id : differenceIDMap.keySet()){
-                                messageIDMap.remove(id);
-                            }
+                        for(String id : differenceIDMap.keySet()){
+                            messageIDMap.remove(id);
+                        }
 
-                            System.out.println("MESSAGE ID SIZE: " + messageIDMap.size());
+                        System.out.println("MESSAGE ID SIZE: " + messageIDMap.size());
 
-                            if (messageIDMap.size() > 0){
+                        if (messageIDMap.size() > 0){
 
-                                inboxMessageList.addAll(messageIDMap.values());
+                            inboxMessageList.addAll(messageIDMap.values());
 
-                                if(mode == Mode.NORMAL){
-                                    for(Message message : messageIDMap.values()){
+                            if(mode == Mode.NORMAL){
+                                for(Message message : messageIDMap.values()){
 
-                                        String sender = "";
-                                        if(message.sender != null && message.sender.emailAddress != null){
-                                            sender = message.sender.emailAddress.name;
-                                        }
-                                        
-                                        String subject = message.subject;
-                                        String bodyPreview = message.bodyPreview;
-                                        sendEmailNotification(sender, subject, bodyPreview);
+                                    String sender = "";
+                                    if(message.sender != null && message.sender.emailAddress != null){
+                                        sender = message.sender.emailAddress.name;
                                     }
-                                }
-                                else if(mode == Mode.CONCENTRATED){
 
-                                    notificationCount += messageIDMap.size();
-
-                                    System.out.println("IN CONCENTRATED MODE, NOTIFICATION THRESHOLD: " + notificationThreshold);
-                                    System.out.println("NOTIFICATION COUNT: " + notificationCount);
-
-
-                                    if(notificationCount >= notificationThreshold){
-                                        sendEmailNotification("Concentrated Mode", "You have " + notificationCount + " new emails in your Inbox", "");
-                                        notificationCount = 0;
-                                    }
-                                }
-                                else if(mode == Mode.HOLIDAY){
-                                    System.out.println("HOLIDAY MODE");
-                                    System.out.println(holiday);
-
-                                    for(Message message : messageIDMap.values()){
-
-                                        String sender = message.sender.emailAddress.address;
-                                        String subject = message.subject;
-                                        String bodyPreview = message.bodyPreview;
-
-                                        if(holiday.equals(Holiday.SENDERS)){ //TODO could do with cleaning up - maybe reorder?
-                                            if(fromSpecifiedSender(message)){
-                                                senderHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.KEYWORDS)){
-                                            if(containsKeywords(message)){
-                                                keywordHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.IMPORTANT)){
-                                            if(isImportant(message)){
-                                                importantHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.SENDERS_AND_KEYWORDS)){
-                                            if(fromSpecifiedSender(message)){
-                                                senderHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                            else if(containsKeywords(message)){
-                                                keywordHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.SENDERS_AND_IMPORTANT)){
-                                            if(fromSpecifiedSender(message)){
-                                                senderHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                            else if(isImportant(message)){
-                                                importantHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.KEYWORDS_AND_IMPORTANT)){
-                                            if(containsKeywords(message)){
-                                                keywordHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                            else if(isImportant(message)){
-                                                importantHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                        else if(holiday.equals(Holiday.SENDERS_AND_KEYWORDS_AND_IMPORTANT)){
-                                            if(fromSpecifiedSender(message)){
-                                                senderHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                            else if(containsKeywords(message)){
-                                                keywordHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                            else if(isImportant(message)){
-                                                importantHolidayNotification(sender, subject, bodyPreview);
-                                            }
-                                        }
-                                    }
+                                    String subject = message.subject;
+                                    String bodyPreview = message.bodyPreview;
+                                    sendEmailNotification(sender, subject, bodyPreview);
                                 }
                             }
-                        //}
-                        //else{
+                            else if(mode == Mode.CONCENTRATED){
 
-                            Date now = new Date();
+                                notificationCount += messageIDMap.size();
 
-                            if(disturb == Disturb.TIMED_1_HOUR || disturb == Disturb.TIMED_8_HOURS || disturb == Disturb.TIMED_24_HOURS || disturb == Disturb.TIMED_UNTIL){
-                                if(now.compareTo(disturbTime) >= 0){
-                                    mode = Mode.NORMAL;
-                                    disturb = Disturb.OFF;
+                                System.out.println("IN CONCENTRATED MODE, NOTIFICATION THRESHOLD: " + notificationThreshold);
+                                System.out.println("NOTIFICATION COUNT: " + notificationCount);
+
+
+                                if(notificationCount >= notificationThreshold){
+                                    sendEmailNotification("Concentrated Mode", "You have " + notificationCount + " new emails in your Inbox", "");
+                                    notificationCount = 0;
                                 }
                             }
-                        //}
+                            else if(mode == Mode.HOLIDAY){
+                                System.out.println("HOLIDAY MODE");
+                                System.out.println(holiday);
+
+                                for(Message message : messageIDMap.values()){
+
+                                    String sender = "";
+                                    if(message.sender != null && message.sender.emailAddress != null){
+                                        sender = message.sender.emailAddress.address;
+                                    }
+                                    String subject = message.subject;
+                                    String bodyPreview = message.bodyPreview;
+
+                                    if(holiday.equals(Holiday.SENDERS)){ //TODO could do with cleaning up - maybe reorder?
+                                        if(fromSpecifiedSender(message)){
+                                            senderHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.KEYWORDS)){
+                                        if(containsKeywords(message)){
+                                            keywordHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.IMPORTANT)){
+                                        if(isImportant(message)){
+                                            importantHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.SENDERS_AND_KEYWORDS)){
+                                        if(fromSpecifiedSender(message)){
+                                            senderHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                        else if(containsKeywords(message)){
+                                            keywordHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.SENDERS_AND_IMPORTANT)){
+                                        if(fromSpecifiedSender(message)){
+                                            senderHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                        else if(isImportant(message)){
+                                            importantHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.KEYWORDS_AND_IMPORTANT)){
+                                        if(containsKeywords(message)){
+                                            keywordHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                        else if(isImportant(message)){
+                                            importantHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                    else if(holiday.equals(Holiday.SENDERS_AND_KEYWORDS_AND_IMPORTANT)){
+                                        if(fromSpecifiedSender(message)){
+                                            senderHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                        else if(containsKeywords(message)){
+                                            keywordHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                        else if(isImportant(message)){
+                                            importantHolidayNotification(sender, subject, bodyPreview);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Date now = new Date();
+
+                        if(disturb == Disturb.TIMED_1_HOUR || disturb == Disturb.TIMED_8_HOURS || disturb == Disturb.TIMED_24_HOURS || disturb == Disturb.TIMED_UNTIL){
+                            if(now.compareTo(disturbTime) >= 0){
+                                mode = Mode.NORMAL;
+                                disturb = Disturb.OFF;
+                            }
+                        }
 
                         if(currentFolder.equals(inboxString)){
                             listMessages(inboxString);
@@ -907,30 +905,37 @@ public class MainScreenController {
 
     //returns true if sender of message is a specified sender
     private boolean fromSpecifiedSender(Message message){
-        return senders.contains(message.sender.emailAddress.address);
+        if(message.sender != null && message.sender.emailAddress != null){
+            return senders.contains(message.sender.emailAddress.address);
+        }
+        return false;
     }
 
     //returns true if message contains specified keywords
     private boolean containsKeywords(Message message){
-        String lowercaseSubject = message.subject.toLowerCase();
-        String lowercaseBody = message.body.content.toLowerCase(Locale.ROOT);
+        if(message.subject != null && message.body != null && message.body.content != null){
+            String lowercaseSubject = message.subject.toLowerCase();
+            String lowercaseBody = message.body.content.toLowerCase();
 
-        boolean contains = false;
+            boolean contains = false;
 
-        for(String keyword : keywords){
-            if(lowercaseBody.contains(keyword) || lowercaseSubject.contains(keyword)){
-                contains = true;
-                break;
+            for(String keyword : keywords){
+                if(lowercaseBody.contains(keyword) || lowercaseSubject.contains(keyword)){
+                    contains = true;
+                    break;
+                }
             }
+
+            return contains;
         }
 
-        return contains;
+        return false;
     }
 
     //returns true is message is labelled 'Important'
     private boolean isImportant(Message message){
         Importance importance = message.importance;
-        return importance.equals(Importance.HIGH);
+        return importance == Importance.HIGH;
     }
 
     //sends a holiday notification from a specified sender

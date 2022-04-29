@@ -74,7 +74,9 @@ public class ForwardEmailScreenController {
         this.messageID = message.id;
         this.subject = "FW: " + message.subject;
         subjectTextField.setText(subject);
-        forwardWebView.getEngine().loadContent(message.body.content);
+        if(message.body != null){
+            forwardWebView.getEngine().loadContent(message.body.content);
+        }
     }
 
     //saves a draft message and closes window on button click

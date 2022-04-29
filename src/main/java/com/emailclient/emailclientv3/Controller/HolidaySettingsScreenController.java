@@ -41,7 +41,6 @@ public class HolidaySettingsScreenController {
     private String keywordsString;
     private ArrayList<String> sendersList;
     private ArrayList<String> keywordsList;
-    private final String SEMI_COLON = "; ";
 
     //sets the main screen controller and imports the current settings
     public void setMainScreenController(MainScreenController mainScreenController){
@@ -71,6 +70,7 @@ public class HolidaySettingsScreenController {
             case IMPORTANT -> importantRadioButton.setSelected(true);
         }
 
+        String SEMI_COLON = "; ";
         StringJoiner senderStringJoiner = new StringJoiner(SEMI_COLON);
         sendersList = mainScreenController.getSenders();
         for(String sender : sendersList){

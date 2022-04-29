@@ -6,7 +6,7 @@
 
     <groupId>com.emailclient</groupId>
     <artifactId>EmailClientV3</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>EmailClientV3</name>
 
     <properties>

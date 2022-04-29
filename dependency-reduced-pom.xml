@@ -4,7 +4,7 @@
   <groupId>com.emailclient</groupId>
   <artifactId>EmailClientV3</artifactId>
   <name>EmailClientV3</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <build>
     <plugins>
       <plugin>

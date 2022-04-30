@@ -80,7 +80,6 @@ public class DisturbSettingsScreenController {
             LocalDate localDate = disturbTime.toInstant()
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate();
-            System.out.println(localDate);
             datePicker.setValue(localDate);
             Calendar calendar = GregorianCalendar.getInstance();
             calendar.setTime(disturbTime);
@@ -175,7 +174,6 @@ public class DisturbSettingsScreenController {
             }
 
             mainScreenController.setDisturbTime(disturbTime);
-            System.out.println(disturbTime);
         }
 
         mainScreenController.setDisturb(disturb);

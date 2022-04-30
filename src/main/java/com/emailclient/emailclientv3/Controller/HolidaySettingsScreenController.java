@@ -93,10 +93,6 @@ public class HolidaySettingsScreenController {
     //sends selected choice to main screen controller on confirm button click
     @FXML
     public void confirmChoice(Event event){
-        System.out.println("sendersString: " + sendersString);
-        System.out.println("sendersTextField: " + sendersTextField.getText());
-        System.out.println("sendersList: " + sendersList);
-
         if(!sendersString.equals(sendersTextField.getText())){
 
             sendersString = sendersTextField.getText().toLowerCase();

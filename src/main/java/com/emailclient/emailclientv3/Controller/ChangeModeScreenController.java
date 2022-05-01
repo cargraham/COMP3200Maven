@@ -167,6 +167,15 @@ public class ChangeModeScreenController {
         }
 
         mainScreenController.setMode(mode);
+        if(mode != Mode.NORMAL){
+            mainScreenController.cancelTimer();
+            mainScreenController.syncTimer(30000);
+        }
+        else{
+            long syncFrequency = mainScreenController.getSyncFrequency();
+            mainScreenController.cancelTimer();
+            mainScreenController.syncTimer(syncFrequency);
+        }
 
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();

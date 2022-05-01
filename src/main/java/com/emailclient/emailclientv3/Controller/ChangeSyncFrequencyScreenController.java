@@ -4,13 +4,13 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 public class ChangeSyncFrequencyScreenController {
 
     @FXML
-    public ComboBox<String> comboBox;
+    public ChoiceBox<String> choiceBox;
 
     @FXML
     public Button confirmButton;
@@ -24,25 +24,33 @@ public class ChangeSyncFrequencyScreenController {
     //initialises the UI after FXML values have been injected
     @FXML
     public void initialize(){
-        comboBox.getItems().add("1 Minute");
-        comboBox.getItems().add("5 Minutes");
-        comboBox.getItems().add("10 Minutes");
-        comboBox.getItems().add("30 Minutes");
-        comboBox.getItems().add("60 Minutes");
+        choiceBox.getItems().add("1 Minute");
+        choiceBox.getItems().add("5 Minutes");
+        choiceBox.getItems().add("10 Minutes");
+        choiceBox.getItems().add("30 Minutes");
+        choiceBox.getItems().add("60 Minutes");
 
-        comboBox.getSelectionModel().selectFirst();
+
     }
 
     //sets the main screen controller and imports the current settings
     public void setMainScreenController(MainScreenController mainScreenController){
         this.mainScreenController = mainScreenController;
         syncFrequency = mainScreenController.getSyncFrequency();
+
+        switch ((int) syncFrequency) {
+            case 60000 -> choiceBox.getSelectionModel().select(0);
+            case 300000 -> choiceBox.getSelectionModel().select(1);
+            case 600000 -> choiceBox.getSelectionModel().select(2);
+            case 1800000 -> choiceBox.getSelectionModel().select(3);
+            case 3600000 -> choiceBox.getSelectionModel().select(4);
+        }
     }
 
     //sends selected choice to main screen controller on confirm button click
     @FXML
     public void confirmFrequencyChoice(Event event){
-        String minutes = comboBox.getValue();
+        String minutes = choiceBox.getValue();
 
         switch (minutes) {
             case "1 Minute" -> syncFrequency = 60000;
@@ -53,8 +61,6 @@ public class ChangeSyncFrequencyScreenController {
         }
 
         mainScreenController.setSyncFrequency(syncFrequency);
-        mainScreenController.cancelTimer();
-        mainScreenController.syncTimer();
 
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();

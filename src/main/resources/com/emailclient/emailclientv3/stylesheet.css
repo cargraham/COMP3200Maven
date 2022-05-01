@@ -7,7 +7,6 @@
 }
 
 .separator > .line {
-    /*-fx-background-color: #A3D9FF;*/
     -fx-border-color: #A3D9FF;
     -fx-border-width: 0.5;
 }
@@ -96,21 +95,16 @@
     -fx-text-fill: #ffffff;
 }
 
-/*
-.radio-button:selected > .radio > .dot {
-    -fx-background-color: #A3D9FF;
-    -fx-background-radius: 15px;
-    -fx-padding: 8px;
-}
-
-.radio-button > .radio{
-    -fx-background-color: #434B4C;
-    -fx-border-color: #A3D9FF;
-    -fx-border-radius: 15px;
-    -fx-padding: 3px;
-}*/
-
 .importance {
     -fx-text-fill: #ff3639;
     -fx-font-size: 25px;
+}
+
+.choice-box{
+    -fx-background-color: #434B4C;
+    -fx-border-color: #A3D9FF;
+}
+
+.choice-box > .open-button > .arrow{
+    -fx-border-color: #A3D9FF;
 }

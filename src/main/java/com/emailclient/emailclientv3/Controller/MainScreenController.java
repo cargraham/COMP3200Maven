@@ -186,6 +186,19 @@ public class MainScreenController {
         return currentFolder;
     }
 
+    /*
+    * METHODS TO HANDLE THE LOGIC OF THE APPLICATION
+    * */
+    //adds a given message to the list of messages in inbox
+    public void addToInboxList(Message message){
+        inboxMessageList.add(message);
+    }
+
+    //removes a given message to the list of message in inbox
+    public void removeFromInboxList(Message message){
+        inboxMessageList.remove(message);
+    }
+
     //populates the listview and hashmap with message from the current folder
     public void listMessages(String folderName){
         messageListView.getItems().clear();
@@ -365,18 +378,6 @@ public class MainScreenController {
         }catch(Exception ignored){}
     }
 
-    //changes folder selection on tree view click
-    @FXML
-    public void handleFoldersListClick() {
-        //doesn't let you select parent nodes
-        if(foldersList.getSelectionModel().getSelectedItem().isLeaf()){
-            String selectedFolder = foldersList.getSelectionModel().getSelectedItem().getValue();
-            listMessages(folderMap.get(selectedFolder));
-            currentFolder = selectedFolder.toLowerCase(Locale.ROOT).replaceAll("\\s+", "");
-            selectFirstMessage();
-        }
-    }
-
     //populates arraylist with non-deletable folders
     public void populateFaveFolders(){
         faveNames.add("Inbox");
@@ -497,19 +498,6 @@ public class MainScreenController {
                 .show();
     }
 
-    //FXML initialize method to initialize screen after FXML values are injected
-    @FXML
-    public void initialize() {
-        logIn();
-        populateFaveFolders();
-        loadFolders();
-        listMessages(folderMap.get("Inbox"));
-        syncTimer();
-        selectFirstMessage();
-        initialiseInboxMap();
-        addListViewListener();
-    }
-
     //add listener to list view for selection changes
     public void addListViewListener(){
         messageListView.getSelectionModel().selectedItemProperty()
@@ -546,9 +534,36 @@ public class MainScreenController {
     //first message is selected
     public void selectFirstMessage(){
         if(!messageListView.getItems().isEmpty()){
-
             messageListView.getSelectionModel().select(0);
             selectMessage(messageMap.get(messageListView.getSelectionModel().getSelectedItem()));
+        }
+    }
+
+    /*
+    * FXML METHODS
+    * */
+    //FXML initialize method to initialize screen after FXML values are injected
+    @FXML
+    public void initialize() {
+        logIn();
+        populateFaveFolders();
+        loadFolders();
+        listMessages(folderMap.get("Inbox"));
+        syncTimer(syncFrequency);
+        selectFirstMessage();
+        initialiseInboxMap();
+        addListViewListener();
+    }
+
+    //changes folder selection on tree view click
+    @FXML
+    public void handleFoldersListClick() {
+        //doesn't let you select parent nodes
+        if(foldersList.getSelectionModel().getSelectedItem().isLeaf()){
+            String selectedFolder = foldersList.getSelectionModel().getSelectedItem().getValue();
+            listMessages(folderMap.get(selectedFolder));
+            currentFolder = selectedFolder.toLowerCase(Locale.ROOT).replaceAll("\\s+", "");
+            selectFirstMessage();
         }
     }
 
@@ -755,6 +770,9 @@ public class MainScreenController {
         stage.show();
     }
 
+    /*
+    * HANDLES TIMER AND MODE CHANGES
+    * */
     //cancels timer so it can be reset with different syncFrequency
     public void cancelTimer(){
         timer.cancel();
@@ -762,7 +780,7 @@ public class MainScreenController {
     }
 
     //syncs the timer with the given syncFrequency
-    public void syncTimer(){
+    public void syncTimer(long frequency){
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -770,6 +788,9 @@ public class MainScreenController {
                 Platform.runLater(() -> {
 
                     try{
+
+                        System.out.println(mode);
+                        System.out.println("Sync Frequency: " + frequency);
 
                         List<Message> messages = Graph.getMailListFromFolder(inboxString, messageMap.size()); //from graph
 
@@ -876,6 +897,8 @@ public class MainScreenController {
                             if(now.compareTo(disturbTime) >= 0){
                                 mode = Mode.NORMAL;
                                 disturb = Disturb.OFF;
+                                cancelTimer();
+                                syncTimer(syncFrequency);
                             }
                         }
 
@@ -889,7 +912,7 @@ public class MainScreenController {
                     }
                 });
             }
-        }, 0, syncFrequency);
+        }, 0, frequency);
     }
 
     //returns true if sender of message is a specified sender
@@ -940,15 +963,5 @@ public class MainScreenController {
     //sends a holiday notification for an important email
     private void importantHolidayNotification(String sender, String subject, String bodyPreview){
         sendModeNotification("Holiday Mode - high importance", sender, subject, bodyPreview);
-    }
-
-    //adds a given message to the list of messages in inbox
-    public void addToInboxList(Message message){
-        inboxMessageList.add(message);
-    }
-
-    //removes a given message to the list of message in inbox
-    public void removeFromInboxList(Message message){
-        inboxMessageList.remove(message);
     }
 }
